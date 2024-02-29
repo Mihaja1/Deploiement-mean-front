@@ -11,10 +11,10 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent
 {
-    constructor(private router: Router) {}
+      constructor(private router: Router) {}
 
-    ngOnInit() {
-        // Naviguer vers la page de connexion au chargement initial de l'application
-        this.router.navigate(['/sign-in']);
-    }
+        ngOnInit() {
+            // Naviguer vers la page de connexion au chargement initial de l'application
+            this.router.navigate(['/sign-in']);
+        }
 }

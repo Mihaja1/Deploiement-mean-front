@@ -32,7 +32,7 @@ export class AuthSignInComponent implements OnInit
     };
     signInForm: UntypedFormGroup;
     showAlert: boolean = false;
-    toggle: boolean = false;
+    toggle: boolean = true;
     isLoading: boolean =false;
 
     /**
@@ -71,7 +71,7 @@ export class AuthSignInComponent implements OnInit
     /**
      * Sign in
      */
-    signIn(): void
+    signIn(defaultBody?:any): void
     {
         // Return if the form is invalid
         if ( this.signInForm.invalid )
@@ -92,7 +92,7 @@ export class AuthSignInComponent implements OnInit
 
         this.isLoading = true;
 
-        this._authService.signIn(this.toggle ? 'login.employe' : 'login', body).pipe(
+        this._authService.signIn(this.toggle ? 'login.employe' : 'login',defaultBody || body).pipe(
             tap((res)=>{
                 this.isLoading = false;
                 this.showAlert = true;
@@ -135,4 +135,24 @@ export class AuthSignInComponent implements OnInit
     toggleButton(){
         this.toggle =  !this.toggle;
     }
+
+    signInEmployee(){
+        this.toggle = true
+        const defaultBody = {
+            "email": 'julio@gmail.com',
+            "password": 'Julio123'
+        }
+        this.signIn(defaultBody);
+    }
+
+    signInClient() {
+        this.toggle = false
+        const defaultBody = {
+            "email": 'mihajaraman@gmail.com',
+            "password": 'Bertha123'
+        }
+        this.signIn(defaultBody)
+    }
+
+
 }
